@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Group_Project</string>
+    <string name="image_view_text">Image.</string>
+    <string name="load_image_button_text">Load an Image.</string>
+    <string name="take_image_button_text">Take an Image.</string>
+    <string name="combine_images_button_text">Combine Images.</string>
+    <string name="save_image_button_text">Save the Image.</string>
+</resources>
