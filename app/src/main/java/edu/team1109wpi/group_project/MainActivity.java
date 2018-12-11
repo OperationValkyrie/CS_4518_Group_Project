@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView image1View = (ImageView) image1Fragment.getView().findViewById(R.id.imageView);
         Bitmap image1Bitmap = ((BitmapDrawable)image1View.getDrawable()).getBitmap();
         ImageView image2View = (ImageView) image2Fragment.getView().findViewById(R.id.imageView);
-        Bitmap image2Bitmap = ((BitmapDrawable)image1View.getDrawable()).getBitmap();
+        Bitmap image2Bitmap = ((BitmapDrawable)image2View.getDrawable()).getBitmap();
 
         img1Map = Bitmap.createScaledBitmap(image1Bitmap, SIZE_X, SIZE_Y, false);
         convertBitmapToByteBuffer(img1Map);
