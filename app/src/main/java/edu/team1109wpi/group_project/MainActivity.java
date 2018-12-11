@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.tensorflow.lite.Interpreter;
 
@@ -181,6 +182,26 @@ public class MainActivity extends AppCompatActivity {
 
         tflite.run(imgData, labelProbArray);
         tflite.run(img2Data, labelProbArray2);
+        TextView t1 = (TextView) findViewById(R.id.img1Data);
+        TextView t2 = (TextView) findViewById(R.id.img2Data);
+
+        int max1location = 0;
+        int max2location = 0;
+
+        for (int x = 0; x < 1001; x++){
+            if (labelProbArray[0][x] >= labelProbArray[0][max1location]){
+                //max = labelProbArray[0][x];
+                max1location = x;
+            }
+            if (labelProbArray2[0][x] >= labelProbArray2[0][max2location]){
+                //max = labelProbArray[0][x];
+                max2location = x;
+            }
+        }
+        String theResult = mLabels[max1location] + " " + labelProbArray[0][max1location] + " percent sure";
+        String theResult2 = mLabels[max2location] + " " + labelProbArray2[0][max2location] + " percent sure";
+        t1.setText(theResult);
+        t2.setText(theResult2);
 
         Log.v("TAG", "Ran");
     }
