@@ -3,6 +3,7 @@ package edu.team1109wpi.group_project;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import org.tensorflow.lite.Interpreter;
 
@@ -167,15 +169,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        img1Map = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(iStream1), SIZE_X, SIZE_Y, false);
+        ImageView image1View = (ImageView) image1Fragment.getView().findViewById(R.id.imageView);
+        Bitmap image1Bitmap = ((BitmapDrawable)image1View.getDrawable()).getBitmap();
+        ImageView image2View = (ImageView) image2Fragment.getView().findViewById(R.id.imageView);
+        Bitmap image2Bitmap = ((BitmapDrawable)image1View.getDrawable()).getBitmap();
+
+        img1Map = Bitmap.createScaledBitmap(image1Bitmap, SIZE_X, SIZE_Y, false);
         convertBitmapToByteBuffer(img1Map);
-        img2Map = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(iStream2), SIZE_X, SIZE_Y, false);
+        img2Map = Bitmap.createScaledBitmap(image2Bitmap, SIZE_X, SIZE_Y, false);
         convertBitmap2ToByteBuffer(img2Map);
 
         tflite.run(imgData, labelProbArray);
         tflite.run(img2Data, labelProbArray2);
 
-
+        Log.v("TAG", "Ran");
     }
 
 

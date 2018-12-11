@@ -28,6 +28,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="24dp"
+        android:onClick="onClickCompare"
         android:text="@string/combine_images_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/saveButton"
