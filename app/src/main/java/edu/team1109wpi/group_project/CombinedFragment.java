@@ -25,7 +25,7 @@ public class CombinedFragment extends Fragment {
         combineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new processingImages(getContext(), getView().findViewById(android.R.id.content), image1Fragment, image2Fragment).execute();
+                new processingImages(getContext(), getView(), image1Fragment, image2Fragment).execute();
             }
         });
     }

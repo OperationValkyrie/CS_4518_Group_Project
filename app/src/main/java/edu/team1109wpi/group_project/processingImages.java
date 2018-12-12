@@ -181,7 +181,7 @@ public class processingImages extends AsyncTask<String, Float, Long> {
         for (int i = 0; i < SIZE_X; ++i) {
             for (int j = 0; j < SIZE_Y; ++j) {
                 final int val = intValues[pixel++];
-                addPixelValue(val);
+                addPixelValue2(val);
             }
         }
     }
@@ -191,4 +191,11 @@ public class processingImages extends AsyncTask<String, Float, Long> {
         imgData.putFloat((((pixelValue >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
         imgData.putFloat(((pixelValue & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
     }
+
+    protected void addPixelValue2(int pixelValue) {
+        img2Data.putFloat((((pixelValue >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+        img2Data.putFloat((((pixelValue >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+        img2Data.putFloat(((pixelValue & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+    }
+
 }
