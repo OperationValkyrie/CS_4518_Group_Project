@@ -28,6 +28,7 @@ public class ImageFragment extends Fragment {
     private static final int RESULT_LOAD_IMG = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
     private String filepath;
+    private Bitmap imageBitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +54,11 @@ public class ImageFragment extends Fragment {
                loadImage();
             }
         });
+
+        if(imageBitmap != null) {
+            ImageView imageView = (ImageView) getView().findViewById(R.id.imageView);
+            imageView.setImageBitmap(imageBitmap);
+        }
     }
 
     private void takeImage() {
@@ -89,7 +95,8 @@ public class ImageFragment extends Fragment {
                 ImageView imageView = (ImageView) getView().findViewById(R.id.imageView);
                 File file = new File(filepath);
                 InputStream imageStream = new FileInputStream(file);
-                imageView.setImageBitmap(BitmapFactory.decodeStream(imageStream));
+                imageBitmap = BitmapFactory.decodeStream(imageStream);
+                imageView.setImageBitmap(imageBitmap);
             } catch(Exception e) {
                 e.printStackTrace();
             }
@@ -99,11 +106,15 @@ public class ImageFragment extends Fragment {
                 ImageView imageView = (ImageView) getView().findViewById(R.id.imageView);
                 Uri imageUri = data.getData();
                 InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
-                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                imageView.setImageBitmap(selectedImage);
+                imageBitmap = BitmapFactory.decodeStream(imageStream);
+                imageView.setImageBitmap(imageBitmap);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Bitmap getImageBitmap() {
+        return imageBitmap;
     }
 }
