@@ -129,8 +129,16 @@ public class processingImages extends AsyncTask<String, Float, Long> {
                 max2location = x;
             }
         }
-        String theResult = mLabels[max1location] + " " + labelProbArray[0][max1location] + " percent sure";
-        String theResult2 = mLabels[max2location] + " " + labelProbArray2[0][max2location] + " percent sure";
+        String theResult = mLabels[max1location] + " " + (labelProbArray[0][max1location] * 100) + " percent sure";
+        String theResult2 = mLabels[max2location] + " " + (labelProbArray2[0][max2location] * 100) + " percent sure";
+        String addendum = "";
+        if (max1location == max2location){
+            addendum = "\n It is likely these two pictures are of the same or similar objects.";
+        }
+        else
+            addendum = "\n It is unlikely that these two pictures are of the same object.";
+
+        theResult2 += addendum;
         t1.setText(theResult);
         t2.setText(theResult2);
     }
