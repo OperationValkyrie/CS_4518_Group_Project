@@ -115,6 +115,7 @@ public class processingImages extends AsyncTask<String, Float, Long> {
     protected void onPostExecute(Long result) {
         TextView t1 = (TextView) view.findViewById(R.id.img1Data);
         TextView t2 = (TextView) view.findViewById(R.id.img2Data);
+        TextView message = (TextView) view.findViewById(R.id.compareMessage);
 
         int max1location = 0;
         int max2location = 0;
@@ -135,12 +136,13 @@ public class processingImages extends AsyncTask<String, Float, Long> {
         if (max1location == max2location){
             addendum = "\n It is likely these two pictures are of the same or similar objects.";
         }
-        else
+        else {
             addendum = "\n It is unlikely that these two pictures are of the same object.";
+        }
 
-        theResult2 += addendum;
         t1.setText(theResult);
         t2.setText(theResult2);
+        message.setText(addendum);
     }
 
     //TFLITE functions

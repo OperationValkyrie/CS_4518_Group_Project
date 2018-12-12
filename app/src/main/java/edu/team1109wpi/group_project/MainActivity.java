@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return "Image 2";
                 case 2:
-                    return "Combined Image";
+                    return "Compare Images";
                 default:
                     return "Title";
             }
